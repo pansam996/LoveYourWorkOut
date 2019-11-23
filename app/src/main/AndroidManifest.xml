@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.workout_4">
+
+    <application
+        android:allowBackup="true"
+        android:screenOrientation="portrait"
+        android:icon="@drawable/icon"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme.FullScreen"
+        android:largeHeap="true"
+        android:hardwareAccelerated="true">
+        <activity
+            android:name=".WelcomeActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.FullScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".chestmenu"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".add_chest"
+            android:screenOrientation="portrait"></activity>
+    </application>
+
+</manifest>

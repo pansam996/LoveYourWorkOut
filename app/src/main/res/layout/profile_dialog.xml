@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/howtall"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:text="BMI : "
+        android:textSize="20dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="5dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="5dp"
+        android:textColor="@android:color/black"/>
+
+    <TextView
+        android:id="@+id/bmi"
+        android:textSize="20dp"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="5dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="60dp"
+        android:gravity="center" />
+
+
+    <TextView
+        android:id="@+id/bmr"
+        android:textSize="20dp"
+        android:layout_width="130dp"
+        android:layout_height="30dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="30dp"
+        android:gravity="center" />
+
+
+    <TextView
+        android:id="@+id/tdee"
+        android:textSize="20dp"
+        android:layout_width="130dp"
+        android:layout_height="30dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="75dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="30dp"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/howeight"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:text="基礎代謝率 : "
+        android:textSize="20dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="40dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="5dp"
+        android:textColor="@android:color/black"/>
+
+    <TextView
+        android:id="@+id/howold"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:text="每日消耗熱量 : "
+        android:textSize="20dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="75dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="5dp"
+        android:textColor="@android:color/black"/>
+
+    <TextView
+        android:id="@+id/upmars"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:text="增肌建議攝取 : "
+        android:textSize="20dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="130dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="5dp"
+        android:textColor="@android:color/black"/>
+
+    <TextView
+        android:id="@+id/downfat"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:text="減脂建議攝取 : "
+        android:textSize="20dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="160dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="5dp"
+        android:textColor="@android:color/black"/>
+
+    <TextView
+        android:id="@+id/maintain"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:text="維持建議攝取 : "
+        android:textSize="20dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="190dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="5dp"
+        android:textColor="@android:color/black"/>
+
+    <TextView
+        android:id="@+id/suggest_up"
+        android:textSize="20dp"
+        android:layout_width="130dp"
+        android:layout_height="30dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="130dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="30dp"
+        android:gravity="center" />
+
+
+    <TextView
+        android:id="@+id/suggest_down"
+        android:textSize="20dp"
+        android:layout_width="130dp"
+        android:layout_height="30dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="160dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="30dp"
+        android:gravity="center" />
+
+
+    <TextView
+        android:id="@+id/suggest_maintain"
+        android:textSize="20dp"
+        android:layout_width="130dp"
+        android:layout_height="30dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="190dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="30dp"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/info"
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="250dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="16dp"
+        android:text="基礎代謝率的英文縮寫是 BMR, Basal Metabolic Rate，是指「人類靜臥一天所消耗的熱量」。"/>
+
+    <TextView
+        android:id="@+id/info1"
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="310dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="16dp"
+        android:text="每日消耗熱量英文是 TDEE, Total Daily Energy Expenditure，也就是「每天總消耗的能量」。"/>
+
+    <Button
+        android:id="@+id/profile_ok"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="380dp"
+        android:text="確認"
+        android:textSize="24dp"
+        android:textStyle="bold"/>
+
+
+</RelativeLayout>

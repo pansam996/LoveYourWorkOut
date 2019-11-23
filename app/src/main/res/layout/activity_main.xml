@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TabHost
+        android:id="@+id/tabhost"
+        android:layout_width="match_parent"
+        android:layout_height="661dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TabWidget
+                android:id="@android:id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <FrameLayout
+                android:id="@android:id/tabcontent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RelativeLayout
+                    android:id="@+id/tab3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/howtall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:text="請輸入身高 : "
+                        android:textSize="30dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="5dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="@android:color/black"/>
+
+                    <EditText
+                        android:id="@+id/tall"
+                        android:layout_width="160dp"
+                        android:layout_height="50dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="5dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="20dp"
+                        android:inputType="numberDecimal"
+                        android:gravity="center"
+                        android:hint="單位 : CM"/>
+
+
+                    <EditText
+                        android:id="@+id/weight"
+                        android:layout_width="160dp"
+                        android:layout_height="50dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="60dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="20dp"
+                        android:inputType="numberDecimal"
+                        android:gravity="center"
+                        android:hint="單位 : KG"/>
+
+
+                    <EditText
+                        android:id="@+id/age"
+                        android:layout_width="160dp"
+                        android:layout_height="50dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="115dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="20dp"
+                        android:inputType="numberDecimal"
+                        android:gravity="center"/>
+
+                    <Spinner
+                        android:id="@+id/gender"
+                        android:layout_width="200dp"
+                        android:layout_height="50dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="170dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="20dp" />
+
+                    <Spinner
+                        android:id="@+id/often"
+                        android:layout_width="180dp"
+                        android:layout_height="50dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="215dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="5dp"/>
+
+                    <TextView
+                        android:id="@+id/howeight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:text="請輸入體重 : "
+                        android:textSize="30dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="60dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="@android:color/black"/>
+
+                    <TextView
+                        android:id="@+id/howold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:text="請輸入年齡 : "
+                        android:textSize="30dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="115dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="@android:color/black"/>
+
+                    <TextView
+                        android:id="@+id/howoften"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:text="每周運動次數 : "
+                        android:textSize="25dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="220dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="@android:color/black"/>
+
+                    <TextView
+                        android:id="@+id/whatgender"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:text="性別 : "
+                        android:textSize="30dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="170dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="50dp"
+                        android:textColor="@android:color/black"/>
+
+                    <ImageView
+                        android:id="@+id/info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="230dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="265dp"
+                        app:srcCompat="@drawable/info" />
+
+                    <Button
+                        android:id="@+id/btn_profile"
+                        android:text="計算"
+                        android:textStyle="bold"
+                        android:textSize="24dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="485dp"/>
+
+
+
+
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/tab2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:minHeight="184dp">
+
+
+                    <TextView
+                        android:id="@+id/yearDate"
+                        android:layout_width="180dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="8dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="8dp"
+                        android:text="查詢年份和月份 : "
+                        android:textSize="24dp"
+                        android:textColor="@android:color/black"/>
+
+                    <EditText
+                        android:id="@+id/query_date"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="5dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="15dp"
+                        android:ems="10"
+                        android:hint="輸入範例:2018/12"
+                        android:gravity="center_horizontal"
+                        android:inputType="date" />
+
+                    <TextView
+                        android:id="@+id/query_sp"
+                        android:layout_width="180dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="50dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="right"
+                        android:text="查詢肌群 : "
+                        android:textSize="24dp"
+                        android:textColor="@android:color/black"/>
+
+                    <Spinner
+                        android:id="@+id/spin_sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="50dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="5dp"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/query_spName"
+                        android:layout_width="180dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="90dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="right"
+                        android:text="查詢器材 : "
+                        android:textSize="24dp"
+                        android:textColor="@android:color/black"/>
+
+                    <Spinner
+                        android:id="@+id/spin_spName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="90dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="5dp"
+                        android:textAlignment="center"/>
+
+                    <Button
+                        android:id="@+id/btn_query"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="查詢"
+                        android:textSize="24dp"
+                        android:textStyle="bold"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="130dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="50dp"/>
+
+                    <Button
+                        android:id="@+id/btn_watchSQL"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="管理資料庫"
+                        android:textSize="24dp"
+                        android:textStyle="bold"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="130dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="50dp"/>
+
+                    <com.jjoe64.graphview.GraphView
+                        android:layout_width="match_parent"
+                        android:layout_height="300dp"
+                        android:layout_centerHorizontal="true"
+                        android:id="@+id/graph"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="200dp"/>
+
+
+
+
+
+                </RelativeLayout>
+
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/tab1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:minHeight="184dp">
+
+                    <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="550dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <android.support.constraint.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp">
+
+                            <TextView
+                                android:id="@+id/textView"
+                                android:layout_width="143dp"
+                                android:layout_height="46dp"
+                                android:layout_marginEnd="132dp"
+                                android:layout_marginStart="136dp"
+                                android:layout_marginTop="48dp"
+                                android:text="挑選計畫"
+                                android:textAppearance="@android:style/TextAppearance.Material.Display1"
+                                android:textStyle="bold"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/textView2"
+                                android:layout_width="307dp"
+                                android:layout_height="27dp"
+                                android:layout_marginEnd="51dp"
+                                android:layout_marginStart="53dp"
+                                android:layout_marginTop="9dp"
+                                android:text="選擇今日要訓練的部位，打造個人計畫開始訓練"
+                                android:textAlignment="center"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+                            <Button
+                                android:id="@+id/button"
+                                android:layout_width="372dp"
+                                android:layout_height="150dp"
+                                android:layout_marginEnd="17dp"
+                                android:layout_marginStart="22dp"
+                                android:layout_marginTop="17dp"
+                                android:background="@drawable/chest1"
+                                android:text="胸部訓練"
+                                android:textColor="?attr/colorBackgroundFloating"
+                                android:textSize="24sp"
+                                android:textStyle="bold"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+                            <Button
+                                android:id="@+id/button2"
+                                android:layout_width="372dp"
+                                android:layout_height="150dp"
+                                android:layout_marginEnd="19dp"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginTop="10dp"
+                                android:background="@drawable/leg"
+                                android:text="腿部訓練"
+                                android:textAlignment="center"
+                                android:textColor="?attr/colorBackgroundFloating"
+                                android:textSize="24sp"
+                                android:textStyle="bold"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/button3" />
+
+                            <Button
+                                android:id="@+id/button4"
+                                android:layout_width="372dp"
+                                android:layout_height="150dp"
+                                android:layout_marginEnd="19dp"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginTop="9dp"
+                                android:background="@drawable/hand"
+                                android:text="手臂訓練"
+                                android:textColor="?attr/colorBackgroundFloating"
+                                android:textSize="24sp"
+                                android:textStyle="bold"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/button2" />
+
+                            <Button
+                                android:id="@+id/button3"
+                                android:layout_width="372dp"
+                                android:layout_height="150dp"
+                                android:layout_marginEnd="19dp"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginTop="10dp"
+                                android:background="@drawable/back"
+                                android:text="背部訓練"
+                                android:textColor="?attr/colorBackgroundFloating"
+                                android:textSize="24sp"
+                                android:textStyle="bold"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/button" />
+
+                        </android.support.constraint.ConstraintLayout>
+                    </ScrollView>
+
+                </android.support.constraint.ConstraintLayout>
+
+            </FrameLayout>
+        </LinearLayout>
+    </TabHost>
+</android.support.constraint.ConstraintLayout>

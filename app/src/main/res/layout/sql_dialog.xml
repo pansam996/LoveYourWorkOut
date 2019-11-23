@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:orientation="vertical"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:padding="5dp">
+
+<TextView
+    android:id="@+id/dialog_SQLallrecord"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true"
+    android:layout_marginTop="5dp"
+    android:text="所有活動記錄"
+    android:textSize="30dp"
+    android:textStyle="bold"/>
+
+<ListView
+    android:id="@+id/dialog_SQLlist"
+    android:layout_width="match_parent"
+    android:layout_height="400dp"
+    android:layout_alignParentTop="true"
+    android:layout_marginTop="50dp" />
+
+
+
+<Button
+    android:id="@+id/dialog_SQLdelete"
+    android:layout_width="120dp"
+    android:layout_height="wrap_content"
+    android:layout_alignParentTop="true"
+    android:layout_marginTop="470dp"
+    android:layout_centerHorizontal="true"
+    android:background="@color/colorPrimary"
+    android:text="刪除某日記錄"
+    android:textColor="@android:color/white"
+    android:textSize="18dp"
+    android:textStyle="bold" />
+
+<Button
+    android:id="@+id/dialog_SQLok"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="530dp"
+    android:background="@color/colorPrimary"
+    android:text="確認"
+    android:textColor="@android:color/white"
+    android:textSize="18dp"
+    android:textStyle="bold" />
+
+</RelativeLayout>
