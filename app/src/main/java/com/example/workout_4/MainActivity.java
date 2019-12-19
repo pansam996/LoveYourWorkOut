@@ -73,14 +73,14 @@ public class MainActivity extends AppCompatActivity {
         final Button leg = (Button)findViewById(R.id.button2);
         final Button back = (Button)findViewById(R.id.button3);
 
+        //TAB2's component
+        final Button btn_database = (Button)findViewById(R.id.btn_watchSQL);
+        final Button btn_query = (Button)findViewById(R.id.btn_query);
+        final EditText query_date = (EditText)findViewById(R.id.query_date);
+        final GraphView graph = (GraphView)findViewById(R.id.graph);
+        final Spinner spin_spName = (Spinner)findViewById(R.id.spin_spName);
 
-        tabhost.setup();
-        TabHost.TabSpec TS = null;
-        TAB_Setting(tabhost,TS);
-
-        TAB1_Setting(chest,back,leg,hand);
-
-        //TAB3
+        //TAB3's component
         final EditText tall = (EditText)findViewById(R.id.tall);
         final EditText weight = (EditText)findViewById(R.id.weight);
         final EditText age = (EditText)findViewById(R.id.age);
@@ -88,127 +88,90 @@ public class MainActivity extends AppCompatActivity {
         final Spinner often = (Spinner)findViewById(R.id.often);
         final Button bth_porfile = (Button)findViewById(R.id.btn_profile);
 
-        final String[] steGender = {"男","女"};
-        ArrayAdapter<String> genderList = new ArrayAdapter<>(MainActivity.this, R.layout.myspinner, steGender);
-        genderList.setDropDownViewResource(R.layout.myspinner);
 
-        gender.setAdapter(genderList);
 
-        gender.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(position==0)
-                    get_gender = 5;
-                else
-                    get_gender = -161;
-            }
+        tabhost.setup();
+        TabHost.TabSpec TS = null;
+        TAB_Setting(tabhost,TS);
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+        TAB1_Setting(chest,back,leg,hand);
+        TAB2_Setting(btn_database,btn_query,query_date,graph,spin_spName);
+        TAB3_SEtting(tall,weight,age,gender,often,bth_porfile);
 
-            }
-        });
 
-        final String[] strOften = {"無運動習慣","一周一至三天","一周三至五天","一周六至七天","一天訓練兩次"};
-        ArrayAdapter<String> oftenList = new ArrayAdapter<>(MainActivity.this, R.layout.myspinner, strOften);
-        oftenList.setDropDownViewResource(R.layout.myspinner);
+    }
 
-        often.setAdapter(oftenList);
 
-        often.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(position==0)
-                    get_activity = 1.2;
-                else if(position==1)
-                    get_activity = 1.375;
-                else if(position==2)
-                    get_activity = 1.55;
-                else if(position==3)
-                    get_activity = 1.725;
-                else
-                    get_activity = 1.9;
-            }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+    private void TAB_Setting(TabHost tabhost , TabHost.TabSpec TS){
 
-            }
-        });
+        TS = tabhost.newTabSpec("");
+        TS.setContent(R.id.tab1);
+        TS.setIndicator("Training");
+        tabhost.addTab(TS);
 
-        bth_porfile.setOnClickListener(new Button.OnClickListener() {
+        TS = tabhost.newTabSpec("");
+        TS.setContent(R.id.tab2);
+        TS.setIndicator("Record");
+        tabhost.addTab(TS);
+
+        TS = tabhost.newTabSpec("");
+        TS.setContent(R.id.tab3);
+        TS.setIndicator("Profile");
+        tabhost.addTab(TS);
+    }
+
+    private void TAB1_Setting(Button chest, Button back, Button leg, Button hand) {
+        chest.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-                get_age = Integer.parseInt(age.getText().toString());
-                get_tall = Double.valueOf(tall.getText().toString());
-                get_weight = Double.valueOf(weight.getText().toString());
-
-                String bmi_status="";
-
-                //基礎代謝率
-                bmr = (10*get_weight)+(6.25*get_tall)-(5*get_age)+get_gender;
-
-                //TDEE
-                tdee = bmr*get_activity;
-
-                //BMI
-                bmi = get_weight/(get_tall/100)/(get_tall/100);
-
-                if(bmi < 18.5)
-                    bmi_status = "(過輕)";
-                else if(bmi<24)
-                    bmi_status = "(正常)";
-                else
-                    bmi_status = "(過重)";
-                AlertDialog.Builder profileBuilder = new AlertDialog.Builder(MainActivity.this);
-                View profileView = getLayoutInflater().inflate(R.layout.profile_dialog,null);
-                final TextView show_bmi = (TextView)profileView.findViewById(R.id.bmi);
-                final TextView show_bmr = (TextView)profileView.findViewById(R.id.bmr);
-                final TextView show_tdee = (TextView)profileView.findViewById(R.id.tdee);
-                final TextView show_up = (TextView)profileView.findViewById(R.id.suggest_up);
-                final TextView show_down = (TextView)profileView.findViewById(R.id.suggest_down);
-                final TextView show_main = (TextView)profileView.findViewById(R.id.suggest_maintain);
-                final Button btn_ok = (Button)profileView.findViewById(R.id.profile_ok);
-
-                NumberFormat nf = NumberFormat.getInstance();
-                nf.setMaximumFractionDigits(1);    //小數後兩位
-                show_bmi.setText(nf.format(bmi)+bmi_status);
-                show_bmr.setText(nf.format(bmr)+"大卡");
-                show_tdee.setText(nf.format(tdee)+"大卡");
-                show_up.setText(nf.format((tdee*1.075))+"大卡");
-                show_down.setText(nf.format((tdee*0.85))+"大卡");
-                show_main.setText(nf.format(tdee)+"大卡");
-
-                profileBuilder.setView(profileView);
-                final AlertDialog profile_dialog = profileBuilder.create();
-                profile_dialog.show();
-
-                btn_ok.setOnClickListener(new Button.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        profile_dialog.cancel();
-                    }
-                });
-
-
-
-
+                Intent intent = new Intent();
+                intent.setClass(MainActivity.this  , chestmenu.class);
+                Bundle bundle = new Bundle();
+                bundle.putInt("chose",1);
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
         });
 
+        back.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(MainActivity.this  , chestmenu.class);
+                Bundle bundle = new Bundle();
+                bundle.putInt("chose",2);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
 
+        leg.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(MainActivity.this  , chestmenu.class);
+                Bundle bundle = new Bundle();
+                bundle.putInt("chose",3);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
 
+        hand.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(MainActivity.this  , chestmenu.class);
+                Bundle bundle = new Bundle();
+                bundle.putInt("chose",4);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
+    }
 
-
-
-        //TAB2
-        final Button btn_database = (Button)findViewById(R.id.btn_watchSQL);
-        final Button btn_query = (Button)findViewById(R.id.btn_query);
-        final EditText query_date = (EditText)findViewById(R.id.query_date);
-        final GraphView graph = (GraphView)findViewById(R.id.graph);
-        final Spinner spin_spName = (Spinner)findViewById(R.id.spin_spName);
-
-
+    private void TAB2_Setting(Button btn_database, Button btn_query, final EditText query_date, final GraphView graph, final Spinner spin_spName) {
         //grapg格式
         graph.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter(){
             @Override
@@ -582,80 +545,118 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
-
     }
 
+    private void TAB3_SEtting(final EditText tall, final EditText weight, final EditText age, Spinner gender, Spinner often, Button bth_porfile) {
+        final String[] steGender = {"男","女"};
+        ArrayAdapter<String> genderList = new ArrayAdapter<>(MainActivity.this, R.layout.myspinner, steGender);
+        genderList.setDropDownViewResource(R.layout.myspinner);
+
+        gender.setAdapter(genderList);
+
+        gender.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(position==0)
+                    get_gender = 5;
+                else
+                    get_gender = -161;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        final String[] strOften = {"無運動習慣","一周一至三天","一周三至五天","一周六至七天","一天訓練兩次"};
+        ArrayAdapter<String> oftenList = new ArrayAdapter<>(MainActivity.this, R.layout.myspinner, strOften);
+        oftenList.setDropDownViewResource(R.layout.myspinner);
+
+        often.setAdapter(oftenList);
+
+        often.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(position==0)
+                    get_activity = 1.2;
+                else if(position==1)
+                    get_activity = 1.375;
+                else if(position==2)
+                    get_activity = 1.55;
+                else if(position==3)
+                    get_activity = 1.725;
+                else
+                    get_activity = 1.9;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        bth_porfile.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                get_age = Integer.parseInt(age.getText().toString());
+                get_tall = Double.valueOf(tall.getText().toString());
+                get_weight = Double.valueOf(weight.getText().toString());
+
+                String bmi_status="";
+
+                //基礎代謝率
+                bmr = (10*get_weight)+(6.25*get_tall)-(5*get_age)+get_gender;
+
+                //TDEE
+                tdee = bmr*get_activity;
+
+                //BMI
+                bmi = get_weight/(get_tall/100)/(get_tall/100);
+
+                if(bmi < 18.5)
+                    bmi_status = "(過輕)";
+                else if(bmi<24)
+                    bmi_status = "(正常)";
+                else
+                    bmi_status = "(過重)";
+                AlertDialog.Builder profileBuilder = new AlertDialog.Builder(MainActivity.this);
+                View profileView = getLayoutInflater().inflate(R.layout.profile_dialog,null);
+                final TextView show_bmi = (TextView)profileView.findViewById(R.id.bmi);
+                final TextView show_bmr = (TextView)profileView.findViewById(R.id.bmr);
+                final TextView show_tdee = (TextView)profileView.findViewById(R.id.tdee);
+                final TextView show_up = (TextView)profileView.findViewById(R.id.suggest_up);
+                final TextView show_down = (TextView)profileView.findViewById(R.id.suggest_down);
+                final TextView show_main = (TextView)profileView.findViewById(R.id.suggest_maintain);
+                final Button btn_ok = (Button)profileView.findViewById(R.id.profile_ok);
+
+                NumberFormat nf = NumberFormat.getInstance();
+                nf.setMaximumFractionDigits(1);    //小數後兩位
+                show_bmi.setText(nf.format(bmi)+bmi_status);
+                show_bmr.setText(nf.format(bmr)+"大卡");
+                show_tdee.setText(nf.format(tdee)+"大卡");
+                show_up.setText(nf.format((tdee*1.075))+"大卡");
+                show_down.setText(nf.format((tdee*0.85))+"大卡");
+                show_main.setText(nf.format(tdee)+"大卡");
+
+                profileBuilder.setView(profileView);
+                final AlertDialog profile_dialog = profileBuilder.create();
+                profile_dialog.show();
+
+                btn_ok.setOnClickListener(new Button.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        profile_dialog.cancel();
+                    }
+                });
 
 
-    private void TAB_Setting(TabHost tabhost , TabHost.TabSpec TS){
 
-        TS = tabhost.newTabSpec("");
-        TS.setContent(R.id.tab1);
-        TS.setIndicator("Training");
-        tabhost.addTab(TS);
 
-        TS = tabhost.newTabSpec("");
-        TS.setContent(R.id.tab2);
-        TS.setIndicator("Record");
-        tabhost.addTab(TS);
-
-        TS = tabhost.newTabSpec("");
-        TS.setContent(R.id.tab3);
-        TS.setIndicator("Profile");
-        tabhost.addTab(TS);
+            }
+        });
     }
 
-    private void TAB1_Setting(Button chest, Button back, Button leg, Button hand) {
-        chest.setOnClickListener(new Button.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(MainActivity.this  , chestmenu.class);
-                Bundle bundle = new Bundle();
-                bundle.putInt("chose",1);
-                intent.putExtras(bundle);
-                startActivity(intent);
-            }
-        });
-
-        back.setOnClickListener(new Button.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(MainActivity.this  , chestmenu.class);
-                Bundle bundle = new Bundle();
-                bundle.putInt("chose",2);
-                intent.putExtras(bundle);
-                startActivity(intent);
-            }
-        });
-
-        leg.setOnClickListener(new Button.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(MainActivity.this  , chestmenu.class);
-                Bundle bundle = new Bundle();
-                bundle.putInt("chose",3);
-                intent.putExtras(bundle);
-                startActivity(intent);
-            }
-        });
-
-        hand.setOnClickListener(new Button.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(MainActivity.this  , chestmenu.class);
-                Bundle bundle = new Bundle();
-                bundle.putInt("chose",4);
-                intent.putExtras(bundle);
-                startActivity(intent);
-            }
-        });
-    }
 
     private DataPoint[] getDataPoint() {
         String tmp[]= query_date_text.split("/");
