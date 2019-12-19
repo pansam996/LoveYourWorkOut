@@ -2,9 +2,6 @@ package com.example.workout_4;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.media.AudioManager;
-import android.media.ToneGenerator;
-import android.os.CountDownTimer;
 import android.os.SystemClock;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -12,14 +9,10 @@ import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.ProgressBar;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -184,7 +177,7 @@ public class chestmenu extends AppCompatActivity {
                 Intent intent = new Intent();
                 bundle1.putInt("chosed",chose);
                 intent.putExtras(bundle1);
-                intent.setClass(chestmenu.this  , add_chest.class);
+                intent.setClass(chestmenu.this  , add_action.class);
                 startActivityForResult(intent,1);
 
             }

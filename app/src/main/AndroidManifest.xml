@@ -29,7 +29,7 @@
             android:screenOrientation="portrait"/>
 
         <activity
-            android:name=".add_chest"
+            android:name=".add_action"
             android:screenOrientation="portrait"></activity>
     </application>
 

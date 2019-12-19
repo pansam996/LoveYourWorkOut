@@ -64,8 +64,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
-
+        //TAB
         final TabHost tabhost = (TabHost)findViewById(R.id.tabhost);
+
+        //TAB1's component
         final Button chest = (Button)findViewById(R.id.button);
         final Button hand = (Button)findViewById(R.id.button4);
         final Button leg = (Button)findViewById(R.id.button2);
@@ -74,6 +76,8 @@ public class MainActivity extends AppCompatActivity {
 
         tabhost.setup();
         TabHost.TabSpec TS;
+
+
         TS = tabhost.newTabSpec("");
         TS.setContent(R.id.tab1);
         TS.setIndicator("Training");

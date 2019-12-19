@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
@@ -14,20 +13,20 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class add_chest extends AppCompatActivity {
+public class add_action extends AppCompatActivity {
 
     Boolean is_select_all = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_chest);
+        setContentView(R.layout.activity_add_action);
 
         final ListView listView = (ListView) findViewById(R.id.chest_menu);
         final Button select_all = (Button) findViewById(R.id.button9);
         final Button select_checked = (Button) findViewById(R.id.button10);
 
         //選到哪個部位?
-        Bundle bundle = add_chest.this.getIntent().getExtras();
+        Bundle bundle = add_action.this.getIntent().getExtras();
         int chosed = bundle.getInt("chosed");
 
         //新增動作區
@@ -225,7 +224,7 @@ public class add_chest extends AppCompatActivity {
                 intent.putExtras(bundle);
                 setResult(RESULT_OK,intent);
 
-                add_chest.this.finish();
+                add_action.this.finish();
             }
         });
     }
@@ -243,7 +242,7 @@ public class add_chest extends AppCompatActivity {
 
             setResult(RESULT_OK,intent);
 
-            add_chest.this.finish();
+            add_action.this.finish();
         }
 
         return false;
