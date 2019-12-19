@@ -75,23 +75,10 @@ public class MainActivity extends AppCompatActivity {
 
 
         tabhost.setup();
-        TabHost.TabSpec TS;
+        TabHost.TabSpec TS = null;
+        TAB_Setting(tabhost,TS);
 
-
-        TS = tabhost.newTabSpec("");
-        TS.setContent(R.id.tab1);
-        TS.setIndicator("Training");
-        tabhost.addTab(TS);
-
-        TS = tabhost.newTabSpec("");
-        TS.setContent(R.id.tab2);
-        TS.setIndicator("Record");
-        tabhost.addTab(TS);
-
-        TS = tabhost.newTabSpec("");
-        TS.setContent(R.id.tab3);
-        TS.setIndicator("Profile");
-        tabhost.addTab(TS);
+        TAB1_Setting(chest,back,leg,hand);
 
         //TAB3
         final EditText tall = (EditText)findViewById(R.id.tall);
@@ -595,6 +582,32 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+
+
+    }
+
+
+
+    private void TAB_Setting(TabHost tabhost , TabHost.TabSpec TS){
+
+        TS = tabhost.newTabSpec("");
+        TS.setContent(R.id.tab1);
+        TS.setIndicator("Training");
+        tabhost.addTab(TS);
+
+        TS = tabhost.newTabSpec("");
+        TS.setContent(R.id.tab2);
+        TS.setIndicator("Record");
+        tabhost.addTab(TS);
+
+        TS = tabhost.newTabSpec("");
+        TS.setContent(R.id.tab3);
+        TS.setIndicator("Profile");
+        tabhost.addTab(TS);
+    }
+
+    private void TAB1_Setting(Button chest, Button back, Button leg, Button hand) {
         chest.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -642,8 +655,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
     }
 
     private DataPoint[] getDataPoint() {
