@@ -20,7 +20,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class chestmenu extends AppCompatActivity {
+public class TrainingPage extends AppCompatActivity {
 
     //TextView te = null;
     boolean sta = false;
@@ -40,9 +40,9 @@ public class chestmenu extends AppCompatActivity {
     String chose_part ="";
 
     String all_activity = ""; //記錄今日所有活動
-    MyHelper myHelper;
+    SQL_DataBase SQLDataBase;
 
-    ArrayList<UserModel> allArea_list = new ArrayList<>();
+    ArrayList<ActionInfo> allArea_list = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,7 +62,7 @@ public class chestmenu extends AppCompatActivity {
         final Chronometer timer = (Chronometer)findViewById(R.id.timer);
 
         //開啟資料庫
-        myHelper = new MyHelper(this);
+        SQLDataBase = new SQL_DataBase(this);
 
         btn_record.setBackgroundResource(R.drawable.records);
         btn_water.setBackgroundResource(R.drawable.water);
@@ -92,7 +92,7 @@ public class chestmenu extends AppCompatActivity {
 
                 if(!doing_ornot && allFINISH){
                     //完成所有訓練 秀出表單 然後離開
-                    AlertDialog.Builder mBuilder = new AlertDialog.Builder(chestmenu.this);
+                    AlertDialog.Builder mBuilder = new AlertDialog.Builder(TrainingPage.this);
                     View mView = getLayoutInflater().inflate(R.layout.all_activity,null);
                     final Button dialog_check = (Button) mView.findViewById(R.id.dialog_ok);
                     final TextView dialog_record = (TextView) mView.findViewById(R.id.dialog_record);
@@ -113,12 +113,12 @@ public class chestmenu extends AppCompatActivity {
                 }
                 if(!doing_ornot && !allFINISH){
                     //還沒完成全部訓練 確定離開?
-                    AlertDialog.Builder builder = new AlertDialog.Builder(chestmenu.this);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(TrainingPage.this);
                     builder.setMessage("還沒完成全部訓練 是否離開?");
                     builder.setPositiveButton("是", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            AlertDialog.Builder mBuilder = new AlertDialog.Builder(chestmenu.this);
+                            AlertDialog.Builder mBuilder = new AlertDialog.Builder(TrainingPage.this);
                             View mView = getLayoutInflater().inflate(R.layout.all_activity,null);
                             final Button dialog_check = (Button) mView.findViewById(R.id.dialog_ok);
                             final TextView dialog_record = (TextView) mView.findViewById(R.id.dialog_record);
@@ -154,7 +154,7 @@ public class chestmenu extends AppCompatActivity {
         plus.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle bundle = chestmenu.this.getIntent().getExtras();
+                Bundle bundle = TrainingPage.this.getIntent().getExtras();
                 int chose = bundle.getInt("chose");
 
                 switch (chose){
@@ -177,7 +177,7 @@ public class chestmenu extends AppCompatActivity {
                 Intent intent = new Intent();
                 bundle1.putInt("chosed",chose);
                 intent.putExtras(bundle1);
-                intent.setClass(chestmenu.this  , add_action.class);
+                intent.setClass(TrainingPage.this  , AddAction.class);
                 startActivityForResult(intent,1);
 
             }
@@ -187,8 +187,8 @@ public class chestmenu extends AppCompatActivity {
         delete.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ArrayList<UserModel> add_list = new ArrayList<>();
-                final ChestMenuAdapter adapter = new ChestMenuAdapter(chestmenu.this,add_list);
+                ArrayList<ActionInfo> add_list = new ArrayList<>();
+                final ChestMenuAdapter adapter = new ChestMenuAdapter(TrainingPage.this,add_list);
                 menu.setAdapter(adapter);
             }
         });
@@ -211,7 +211,7 @@ public class chestmenu extends AppCompatActivity {
             public void onClick(View v) {
              if(record){
                 //跳出對話框 可以輸入重量與組數
-                AlertDialog.Builder mBuilder = new AlertDialog.Builder(chestmenu.this);
+                AlertDialog.Builder mBuilder = new AlertDialog.Builder(TrainingPage.this);
                 View mView = getLayoutInflater().inflate(R.layout.dialog_record,null);
                 final EditText mMaxWeight = (EditText) mView.findViewById(R.id.editText);
                 final EditText mMaxNum = (EditText) mView.findViewById(R.id.editText2);
@@ -225,7 +225,7 @@ public class chestmenu extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                             if(!mMaxWeight.getText().toString().isEmpty() && !mMaxNum.getText().toString().isEmpty()){
-                                Toast.makeText(chestmenu.this,"記錄成功",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(TrainingPage.this,"記錄成功",Toast.LENGTH_SHORT).show();
                                 set_count++;
                                 sp_record.setText(sp_record.getText()+"\n"+set_count+" : "+mMaxWeight.getText().toString()+"KG"+"/"+mMaxNum.getText().toString()+"下");
                                 int weight = 0;
@@ -244,16 +244,16 @@ public class chestmenu extends AppCompatActivity {
                                 dialog.cancel();
                             }
                             else{
-                                Toast.makeText(chestmenu.this,"請輸入完整資訊",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(TrainingPage.this,"請輸入完整資訊",Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
                 }
              if(breaking && !record){
-                 Toast.makeText(chestmenu.this,"請先點選喝水按鈕",Toast.LENGTH_SHORT).show();
+                 Toast.makeText(TrainingPage.this,"請先點選喝水按鈕",Toast.LENGTH_SHORT).show();
              }
              if(!breaking){
-                 Toast.makeText(chestmenu.this,"請先點選START",Toast.LENGTH_SHORT).show();
+                 Toast.makeText(TrainingPage.this,"請先點選START",Toast.LENGTH_SHORT).show();
              }
 
 
@@ -270,7 +270,7 @@ public class chestmenu extends AppCompatActivity {
 
 
                     if(btn_water_count==1) {
-                        Toast.makeText(chestmenu.this,"點選記錄圖示記錄此組活動",Toast.LENGTH_LONG).show();
+                        Toast.makeText(TrainingPage.this,"點選記錄圖示記錄此組活動",Toast.LENGTH_LONG).show();
                         if(elapsedMillis!=0){
                             timer.setBase(timer.getBase() + SystemClock.elapsedRealtime() - elapsedMillis);
                         }
@@ -281,10 +281,10 @@ public class chestmenu extends AppCompatActivity {
                     }
 
                     if(!record_ornot && btn_water_count>1){
-                        Toast.makeText(chestmenu.this,"上一組訓練尚未完成記錄",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(TrainingPage.this,"上一組訓練尚未完成記錄",Toast.LENGTH_SHORT).show();
                     }
                     if(record_ornot && btn_water_count>1){
-                        AlertDialog.Builder builder = new AlertDialog.Builder(chestmenu.this);
+                        AlertDialog.Builder builder = new AlertDialog.Builder(TrainingPage.this);
                         builder.setMessage("休息結束，開始下一組?");
 
                         builder.setPositiveButton("是", new DialogInterface.OnClickListener() {
@@ -322,7 +322,7 @@ public class chestmenu extends AppCompatActivity {
 
                 }
                 else {
-                    Toast.makeText(chestmenu.this,"請先點選START",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(TrainingPage.this,"請先點選START",Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -334,10 +334,10 @@ public class chestmenu extends AppCompatActivity {
                 breaking = true;
                 btn_count++;
                 if(btn_count==1)
-                    Toast.makeText(chestmenu.this,"每組結束後點選喝水按鈕並且記錄",Toast.LENGTH_LONG).show();
+                    Toast.makeText(TrainingPage.this,"每組結束後點選喝水按鈕並且記錄",Toast.LENGTH_LONG).show();
                 if(sp_record.getText().toString().equals("記錄表") && btn_count>1){
                     //秀出對話方塊 尚未紀錄是否要離開?
-                    AlertDialog.Builder builder = new AlertDialog.Builder(chestmenu.this);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(TrainingPage.this);
                     builder.setMessage("尚未記錄，是否要離開?");
                     builder.setPositiveButton("是", new DialogInterface.OnClickListener() {
                         @Override
@@ -391,7 +391,7 @@ public class chestmenu extends AppCompatActivity {
 
                 if(btn_count >1 && !(sp_record.getText().toString().equals("記錄表"))){
                     //秀出對話方塊  訓練完成是否要離開?
-                    AlertDialog.Builder builder = new AlertDialog.Builder(chestmenu.this);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(TrainingPage.this);
                     builder.setMessage("訓練完成，是否要離開?");
                     builder.setPositiveButton("是", new DialogInterface.OnClickListener() {
                         @Override
@@ -411,13 +411,13 @@ public class chestmenu extends AppCompatActivity {
                             //資料庫新增資料
                             boolean isInserted = false;
                             if(!(sp_record.getText().toString().equals("記錄表")))
-                                isInserted = myHelper.insert_Data(str,chose_part,allArea_list.get(chose_position).getUserName(),sp_total_work,sp_record.getText().toString());
+                                isInserted = SQLDataBase.insert_Data(str,chose_part,allArea_list.get(chose_position).getUserName(),sp_total_work,sp_record.getText().toString());
                            if(isInserted)
-                               Toast.makeText(chestmenu.this,"更新資料庫成功",Toast.LENGTH_SHORT).show();
+                               Toast.makeText(TrainingPage.this,"更新資料庫成功",Toast.LENGTH_SHORT).show();
                            else
-                               Toast.makeText(chestmenu.this,"更新資料庫失敗",Toast.LENGTH_SHORT).show();
+                               Toast.makeText(TrainingPage.this,"更新資料庫失敗",Toast.LENGTH_SHORT).show();
 
-                            final ChestMenuAdapter adapter = new ChestMenuAdapter(chestmenu.this,allArea_list);
+                            final ChestMenuAdapter adapter = new ChestMenuAdapter(TrainingPage.this,allArea_list);
                             menu.setAdapter(adapter);
                             //介面整理
                             btn_water.setBackgroundResource(R.drawable.water);
@@ -502,8 +502,8 @@ public class chestmenu extends AppCompatActivity {
         {
             case 1: {
                 Bundle bundle = data.getExtras();
-                ArrayList<UserModel> list = (ArrayList<UserModel>) bundle.getSerializable("List");
-                ArrayList<UserModel> add_list = new ArrayList<>();
+                ArrayList<ActionInfo> list = (ArrayList<ActionInfo>) bundle.getSerializable("List");
+                ArrayList<ActionInfo> add_list = new ArrayList<>();
 
                 if (list.size() > 0) {
                     for (int i = 0; i < list.size(); i++) {

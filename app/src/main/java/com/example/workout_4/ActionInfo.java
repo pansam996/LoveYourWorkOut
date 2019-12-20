@@ -2,7 +2,7 @@ package com.example.workout_4;
 
 import java.io.Serializable;
 
-public class UserModel implements Serializable{
+public class ActionInfo implements Serializable{
     boolean isSelected;
     String userName;
     int flag;
@@ -11,7 +11,7 @@ public class UserModel implements Serializable{
     int totalWork;
 
 
-    public UserModel(boolean isSelected, String userName, int flag,String finish,String spRecord,int totalWork) {
+    public ActionInfo(boolean isSelected, String userName, int flag, String finish, String spRecord, int totalWork) {
         this.isSelected = isSelected;
         this.userName = userName;
         this.flag = flag;

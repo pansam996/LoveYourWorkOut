@@ -1,8 +1,6 @@
 package com.example.workout_4;
 
 import android.app.Activity;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,14 +13,14 @@ import java.util.List;
 public class ChestMenuAdapter extends BaseAdapter {
 
     Activity activity;
-    List<UserModel> users;
+    List<ActionInfo> users;
     LayoutInflater inflater;
 
     public ChestMenuAdapter(Activity activity) {
         this.activity = activity;
     }
 
-    public ChestMenuAdapter(Activity activity, List<UserModel> users) {
+    public ChestMenuAdapter(Activity activity, List<ActionInfo> users) {
         this.activity = activity;
         this.users = users;
 
@@ -63,7 +61,7 @@ public class ChestMenuAdapter extends BaseAdapter {
         else{
             holder = (ViewHolder)view.getTag();
         }
-        UserModel model = users.get(position);
+        ActionInfo model = users.get(position);
 
         holder.ivSport.setBackgroundResource(model.getFlag());
         holder.SportName.setText(model.getUserName());
@@ -71,7 +69,7 @@ public class ChestMenuAdapter extends BaseAdapter {
 
         return  view;
     }
-    public void updateRecords(List<UserModel> users){
+    public void updateRecords(List<ActionInfo> users){
         this.users = users;
 
         notifyDataSetChanged();

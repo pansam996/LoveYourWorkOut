@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class MyHelper extends SQLiteOpenHelper {
+public class SQL_DataBase extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "WorkOut.db";
     private static final String TABLE_NAME = "RecordTable";
     private static final String COL_1 = "ID";
@@ -18,7 +18,7 @@ public class MyHelper extends SQLiteOpenHelper {
 
     private Context con;
 
-    public MyHelper(Context context) {
+    public SQL_DataBase(Context context) {
         super(context, DATABASE_NAME, null, 1);
         SQLiteDatabase db = this.getWritableDatabase();
         con = context;

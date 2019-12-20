@@ -7,14 +7,14 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-public class sql_adapter extends BaseAdapter{
+public class RecordListAdapter extends BaseAdapter{
 
     private String[] mspl_dates;
     Activity activity;
     LayoutInflater inflater;
 
 
-    public sql_adapter(Activity activity,String[] spl_dates){
+    public RecordListAdapter(Activity activity, String[] spl_dates){
         mspl_dates=spl_dates;
         this.activity = activity;
 

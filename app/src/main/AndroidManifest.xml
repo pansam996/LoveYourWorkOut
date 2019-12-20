@@ -25,11 +25,11 @@
             android:name=".MainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".chestmenu"
+            android:name=".TrainingPage"
             android:screenOrientation="portrait"/>
 
         <activity
-            android:name=".add_action"
+            android:name=".AddAction"
             android:screenOrientation="portrait"></activity>
     </application>
 

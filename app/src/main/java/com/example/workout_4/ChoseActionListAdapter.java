@@ -10,17 +10,17 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class CustomAdapter extends BaseAdapter{
+public class ChoseActionListAdapter extends BaseAdapter{
 
     Activity activity;
-    List<UserModel> users;
+    List<ActionInfo> users;
     LayoutInflater inflater;
 
-    public CustomAdapter(Activity activity) {
+    public ChoseActionListAdapter(Activity activity) {
         this.activity = activity;
     }
 
-    public CustomAdapter(Activity activity, List<UserModel> users) {
+    public ChoseActionListAdapter(Activity activity, List<ActionInfo> users) {
         this.activity = activity;
         this.users = users;
 
@@ -61,7 +61,7 @@ public class CustomAdapter extends BaseAdapter{
         else{
             holder = (ViewHolder)view.getTag();
         }
-        UserModel model = users.get(position);
+        ActionInfo model = users.get(position);
 
         holder.ivSport.setBackgroundResource(model.getFlag());
         holder.SportName.setText(model.getUserName());
@@ -77,7 +77,7 @@ public class CustomAdapter extends BaseAdapter{
 
         return  view;
     }
-    public void updateRecords(List<UserModel> users){
+    public void updateRecords(List<ActionInfo> users){
         this.users = users;
 
         notifyDataSetChanged();

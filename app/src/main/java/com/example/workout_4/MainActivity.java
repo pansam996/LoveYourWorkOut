@@ -1,6 +1,5 @@
 package com.example.workout_4;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -15,40 +14,35 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TabHost;
-import android.widget.TabWidget;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
-import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
 import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.DataPointInterface;
-import com.jjoe64.graphview.series.LineGraphSeries;
 import com.jjoe64.graphview.series.OnDataPointTapListener;
 import com.jjoe64.graphview.series.Series;
 
 import java.text.NumberFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     BarGraphSeries<DataPoint> series;
-    MyHelper myHelper;
+    SQL_DataBase SQLDataBase;
     SQLiteDatabase sqLiteDatabase;
-    int size = 0;
+
     String choseTOOL = "";
     String choseDate ="";
     String query_date_text="";
-    boolean query_or_not = false;
+
+    int size = 0;
     int get_age = 0;
     int get_gender = 0;
     double get_weight = 0;
@@ -126,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.setClass(MainActivity.this  , chestmenu.class);
+                intent.setClass(MainActivity.this  , TrainingPage.class);
                 Bundle bundle = new Bundle();
                 bundle.putInt("chose",1);
                 intent.putExtras(bundle);
@@ -138,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.setClass(MainActivity.this  , chestmenu.class);
+                intent.setClass(MainActivity.this  , TrainingPage.class);
                 Bundle bundle = new Bundle();
                 bundle.putInt("chose",2);
                 intent.putExtras(bundle);
@@ -150,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.setClass(MainActivity.this  , chestmenu.class);
+                intent.setClass(MainActivity.this  , TrainingPage.class);
                 Bundle bundle = new Bundle();
                 bundle.putInt("chose",3);
                 intent.putExtras(bundle);
@@ -162,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.setClass(MainActivity.this  , chestmenu.class);
+                intent.setClass(MainActivity.this  , TrainingPage.class);
                 Bundle bundle = new Bundle();
                 bundle.putInt("chose",4);
                 intent.putExtras(bundle);
@@ -198,8 +192,8 @@ public class MainActivity extends AppCompatActivity {
         graph.getViewport().setScrollable(true);
 
         //資料庫設定
-        myHelper = new MyHelper(this);
-        sqLiteDatabase = myHelper.getWritableDatabase();
+        SQLDataBase = new SQL_DataBase(this);
+        sqLiteDatabase = SQLDataBase.getWritableDatabase();
         series = new BarGraphSeries<DataPoint>(new DataPoint[0]);
 
         //查詢並且畫圖
@@ -245,7 +239,7 @@ public class MainActivity extends AppCompatActivity {
                     sqltmpdate = choseDate+xV+"日";
 
                 String record = "";
-                Cursor findRecord = myHelper.getSportRecord(sqltmpdate,choseTOOL);
+                Cursor findRecord = SQLDataBase.getSportRecord(sqltmpdate,choseTOOL);
                 while (findRecord.moveToNext()){
                     record += findRecord.getString(0)+"\n\n總公斤為 : "+findRecord.getString(1)+"KG\n\n";
                 }
@@ -291,7 +285,7 @@ public class MainActivity extends AppCompatActivity {
 
                 switch (position){
                     case 0:{
-                        Cursor findName = myHelper.getSortName("胸部訓練");
+                        Cursor findName = SQLDataBase.getSortName("胸部訓練");
 
                         while (findName.moveToNext()){
                             tmp_name.add(findName.getString(0));
@@ -310,7 +304,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     }
                     case 1:{
-                        Cursor findName = myHelper.getSortName("背部訓練");
+                        Cursor findName = SQLDataBase.getSortName("背部訓練");
 
                         while (findName.moveToNext()){
                             tmp_name.add(findName.getString(0));
@@ -328,7 +322,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     }
                     case 2:{
-                        Cursor findName = myHelper.getSortName("腿部訓練");
+                        Cursor findName = SQLDataBase.getSortName("腿部訓練");
 
                         while (findName.moveToNext()){
                             tmp_name.add(findName.getString(0));
@@ -346,7 +340,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     }
                     case 3:{
-                        Cursor findName = myHelper.getSortName("手部訓練");
+                        Cursor findName = SQLDataBase.getSortName("手部訓練");
 
                         while (findName.moveToNext()){
                             tmp_name.add(findName.getString(0));
@@ -403,7 +397,7 @@ public class MainActivity extends AppCompatActivity {
                 final Button dialog_delete = (Button) mView.findViewById(R.id.dialog_SQLdelete);
                 final ListView dialog_list = (ListView) mView.findViewById(R.id.dialog_SQLlist);
 
-                Cursor res1 = myHelper.getTraingDate();
+                Cursor res1 = SQLDataBase.getTraingDate();
                 final List tmp_date = new ArrayList();
 
                 while (res1.moveToNext()){
@@ -415,7 +409,7 @@ public class MainActivity extends AppCompatActivity {
                     date[i]=tmp_date.get(i).toString();
                 }
 
-                sql_adapter adapter = new sql_adapter(MainActivity.this,date);
+                RecordListAdapter adapter = new RecordListAdapter(MainActivity.this,date);
                 dialog_list.setAdapter(adapter);
 
                 mBuilder.setView(mView);
@@ -435,7 +429,7 @@ public class MainActivity extends AppCompatActivity {
 
                         theDay.setText(date[position]);
 
-                        Cursor res = myHelper.getDateRecord(date[position]);
+                        Cursor res = SQLDataBase.getDateRecord(date[position]);
 
                         StringBuffer buffer = new StringBuffer();
                         while (res.moveToNext()){
@@ -465,7 +459,7 @@ public class MainActivity extends AppCompatActivity {
                                 deleteOK.setOnClickListener(new Button.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
-                                        Integer deleteRows = myHelper.deleteData(deleteID.getText().toString());
+                                        Integer deleteRows = SQLDataBase.deleteData(deleteID.getText().toString());
                                         if(deleteRows > 0)
                                             Toast.makeText(MainActivity.this,"資料刪除成功",Toast.LENGTH_SHORT).show();
                                         else
@@ -522,7 +516,7 @@ public class MainActivity extends AppCompatActivity {
                                     thedate = tmpdate[0]+"年"+tmpdate[1]+"月"+tmpdate[2]+"日";
                                 }
 
-                                Integer deleteRows = myHelper.deleteSomeData(thedate);
+                                Integer deleteRows = SQLDataBase.deleteSomeData(thedate);
                                 if(deleteRows > 0)
                                     Toast.makeText(MainActivity.this,"資料刪除成功",Toast.LENGTH_SHORT).show();
                                 else
@@ -663,7 +657,7 @@ public class MainActivity extends AppCompatActivity {
         if(Integer.parseInt(tmp[1]) <10)
             tmp[1] = "0"+tmp[1];
         choseDate = tmp[0]+"年"+tmp[1]+"月";
-        Cursor cursor = myHelper.getDatePoint(choseDate,choseTOOL);
+        Cursor cursor = SQLDataBase.getDatePoint(choseDate,choseTOOL);
         DataPoint[] dp = new DataPoint[cursor.getCount()];
 
         for(int i=0;i<cursor.getCount();i++){
