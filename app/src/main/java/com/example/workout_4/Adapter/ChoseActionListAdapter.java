@@ -1,4 +1,4 @@
-package com.example.workout_4;
+package com.example.workout_4.Adapter;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
@@ -8,19 +8,22 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.workout_4.ActionInfo;
+import com.example.workout_4.R;
+
 import java.util.List;
 
-public class ChestMenuAdapter extends BaseAdapter {
+public class ChoseActionListAdapter extends BaseAdapter{
 
     Activity activity;
     List<ActionInfo> users;
     LayoutInflater inflater;
 
-    public ChestMenuAdapter(Activity activity) {
+    public ChoseActionListAdapter(Activity activity) {
         this.activity = activity;
     }
 
-    public ChestMenuAdapter(Activity activity, List<ActionInfo> users) {
+    public ChoseActionListAdapter(Activity activity, List<ActionInfo> users) {
         this.activity = activity;
         this.users = users;
 
@@ -48,13 +51,13 @@ public class ChestMenuAdapter extends BaseAdapter {
 
         if(view == null){
 
-            view = inflater.inflate(R.layout.all_menu_item,viewGroup,false);
+            view = inflater.inflate(R.layout.list_view_item,viewGroup,false);
 
             holder = new ViewHolder();
 
             holder.SportName = (TextView)view.findViewById(R.id.sport_name);
+            holder.ivCheckBox = (ImageView)view.findViewById(R.id.ivCheck);
             holder.ivSport = (ImageView)view.findViewById(R.id.ivSprot);
-            holder.finish = (TextView)view.findViewById(R.id.sport_over);
 
             view.setTag(holder);
         }
@@ -65,7 +68,15 @@ public class ChestMenuAdapter extends BaseAdapter {
 
         holder.ivSport.setBackgroundResource(model.getFlag());
         holder.SportName.setText(model.getUserName());
-        holder.finish.setText(model.getFinish());
+
+        if(model.isSelected()){
+            holder.ivCheckBox.setBackgroundResource(R.drawable.check);
+        }
+        else
+            holder.ivCheckBox.setBackgroundResource(R.drawable.empty);
+
+        if (model.getFlag()==0)
+            holder.ivCheckBox.setBackgroundResource(0);
 
         return  view;
     }
@@ -78,6 +89,6 @@ public class ChestMenuAdapter extends BaseAdapter {
     class  ViewHolder{
         TextView SportName;
         ImageView ivSport;
-        TextView finish;
+        ImageView ivCheckBox;
     }
 }

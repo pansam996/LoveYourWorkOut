@@ -1,4 +1,4 @@
-package com.example.workout_4;
+package com.example.workout_4.Adapter;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
@@ -8,19 +8,22 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.workout_4.ActionInfo;
+import com.example.workout_4.R;
+
 import java.util.List;
 
-public class ChoseActionListAdapter extends BaseAdapter{
+public class ChestMenuAdapter extends BaseAdapter {
 
     Activity activity;
     List<ActionInfo> users;
     LayoutInflater inflater;
 
-    public ChoseActionListAdapter(Activity activity) {
+    public ChestMenuAdapter(Activity activity) {
         this.activity = activity;
     }
 
-    public ChoseActionListAdapter(Activity activity, List<ActionInfo> users) {
+    public ChestMenuAdapter(Activity activity, List<ActionInfo> users) {
         this.activity = activity;
         this.users = users;
 
@@ -48,13 +51,13 @@ public class ChoseActionListAdapter extends BaseAdapter{
 
         if(view == null){
 
-            view = inflater.inflate(R.layout.list_view_item,viewGroup,false);
+            view = inflater.inflate(R.layout.all_menu_item,viewGroup,false);
 
             holder = new ViewHolder();
 
             holder.SportName = (TextView)view.findViewById(R.id.sport_name);
-            holder.ivCheckBox = (ImageView)view.findViewById(R.id.ivCheck);
             holder.ivSport = (ImageView)view.findViewById(R.id.ivSprot);
+            holder.finish = (TextView)view.findViewById(R.id.sport_over);
 
             view.setTag(holder);
         }
@@ -65,15 +68,7 @@ public class ChoseActionListAdapter extends BaseAdapter{
 
         holder.ivSport.setBackgroundResource(model.getFlag());
         holder.SportName.setText(model.getUserName());
-
-        if(model.isSelected()){
-            holder.ivCheckBox.setBackgroundResource(R.drawable.check);
-        }
-        else
-            holder.ivCheckBox.setBackgroundResource(R.drawable.empty);
-
-        if (model.getFlag()==0)
-            holder.ivCheckBox.setBackgroundResource(0);
+        holder.finish.setText(model.getFinish());
 
         return  view;
     }
@@ -86,6 +81,6 @@ public class ChoseActionListAdapter extends BaseAdapter{
     class  ViewHolder{
         TextView SportName;
         ImageView ivSport;
-        ImageView ivCheckBox;
+        TextView finish;
     }
 }

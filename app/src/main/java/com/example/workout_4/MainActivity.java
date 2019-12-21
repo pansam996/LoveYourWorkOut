@@ -20,6 +20,7 @@ import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.workout_4.Adapter.RecordListAdapter;
 import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.BarGraphSeries;

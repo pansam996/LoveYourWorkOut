@@ -16,13 +16,14 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.workout_4.Adapter.ChestMenuAdapter;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class TrainingPage extends AppCompatActivity {
 
-    //TextView te = null;
     boolean sta = false;
     boolean chose_ornot = false;
     boolean doing_ornot = false;
@@ -78,7 +79,6 @@ public class TrainingPage extends AppCompatActivity {
         between_time.setVisibility(View.INVISIBLE);
         timer.setVisibility(View.INVISIBLE);
 
-        //te = (TextView)findViewById(R.id.textView4);
         menu = (ListView)findViewById(R.id.list);
 
         back.setOnClickListener(new Button.OnClickListener() {

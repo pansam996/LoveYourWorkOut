@@ -1,4 +1,4 @@
-package com.example.workout_4;
+package com.example.workout_4.Adapter;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import com.example.workout_4.R;
 
 public class RecordListAdapter extends BaseAdapter{
 
