@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
 
         TAB1_Setting(chest,back,leg,hand);
         TAB2_Setting(btn_database,btn_query,query_date,graph,spin_spName);
-        TAB3_SEtting(tall,weight,age,gender,often,bth_porfile);
+        TAB3_Setting(tall,weight,age,gender,often,bth_porfile);
 
 
     }
@@ -114,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
         TS.setContent(R.id.tab3);
         TS.setIndicator("Profile");
         tabhost.addTab(TS);
+
     }
 
     private void TAB1_Setting(Button chest, Button back, Button leg, Button hand) {
@@ -167,30 +168,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void TAB2_Setting(Button btn_database, Button btn_query, final EditText query_date, final GraphView graph, final Spinner spin_spName) {
-        //grapg格式
-        graph.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter(){
-            @Override
-            public String formatLabel(double value, boolean isValueX) {
-                if(isValueX)
-                    return super.formatLabel((int)value, isValueX)+"號";
-                else{
-                    return super.formatLabel((int)value, isValueX)+"KG";
-                }
-
-            }
-        });
-        //Grapgh設定
-        graph.getViewport().setXAxisBoundsManual(true);
-        graph.getViewport().setMinX(0);
-        graph.getViewport().setMaxX(31);
-
-        graph.getViewport().setYAxisBoundsManual(true);
-        graph.getViewport().setMinY(0);
-        graph.getViewport().setMaxY(3000);
-
-        //縮放
-        graph.getViewport().setScalable(true);
-        graph.getViewport().setScrollable(true);
+        //Graph 設定
+        TAB2_SettingGraph(graph);
 
         //資料庫設定
         SQLDataBase = new SQL_DataBase(this);
@@ -542,7 +521,34 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void TAB3_SEtting(final EditText tall, final EditText weight, final EditText age, Spinner gender, Spinner often, Button bth_porfile) {
+    private void TAB2_SettingGraph(final GraphView graph){
+        //graph格式
+        graph.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter(){
+            @Override
+            public String formatLabel(double value, boolean isValueX) {
+                if(isValueX)
+                    return super.formatLabel((int)value, isValueX)+"號";
+                else{
+                    return super.formatLabel((int)value, isValueX)+"KG";
+                }
+
+            }
+        });
+        //Grapgh設定
+        graph.getViewport().setXAxisBoundsManual(true);
+        graph.getViewport().setMinX(0);
+        graph.getViewport().setMaxX(31);
+
+        graph.getViewport().setYAxisBoundsManual(true);
+        graph.getViewport().setMinY(0);
+        graph.getViewport().setMaxY(3000);
+
+        //縮放
+        graph.getViewport().setScalable(true);
+        graph.getViewport().setScrollable(true);
+    }
+
+    private void TAB3_Setting(final EditText tall, final EditText weight, final EditText age, Spinner gender, Spinner often, Button bth_porfile) {
         final String[] steGender = {"男","女"};
         ArrayAdapter<String> genderList = new ArrayAdapter<>(MainActivity.this, R.layout.myspinner, steGender);
         genderList.setDropDownViewResource(R.layout.myspinner);
