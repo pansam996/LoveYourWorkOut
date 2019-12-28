@@ -610,7 +610,7 @@ public class MainActivity extends AppCompatActivity {
                 tdee = TAB3_CalculateTDEE(bmr ,get_activity);
 
                 //BMI
-                bmi = get_weight/(get_tall/100)/(get_tall/100);
+                bmi = TAB3_CalculateBMI(get_weight ,get_tall );
 
                 if(bmi < 18.5)
                     bmi_status = "(過輕)";
@@ -653,6 +653,10 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private double TAB3_CalculateBMI(double get_weight, double get_tall) {
+        return get_weight/(get_tall/100)/(get_tall/100);
     }
 
     private double TAB3_CalculateTDEE(double bmr, double get_activity) {
