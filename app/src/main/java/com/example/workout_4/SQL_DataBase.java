@@ -77,7 +77,7 @@ public class SQL_DataBase extends SQLiteOpenHelper {
         return res;
     }
 
-    public Cursor getSortName(String part){
+    public Cursor getSportName(String part){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor res = db.rawQuery("select DISTINCT SPORTTOOL from "+TABLE_NAME+" where SPORT=?",new String[]{part});
         return res;

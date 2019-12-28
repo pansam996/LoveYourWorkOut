@@ -265,7 +265,7 @@ public class MainActivity extends AppCompatActivity {
 
                 switch (position){
                     case 0:{
-                        Cursor findName = SQLDataBase.getSortName("胸部訓練");
+                        Cursor findName = SQLDataBase.getSportName("胸部訓練");
 
                         while (findName.moveToNext()){
                             tmp_name.add(findName.getString(0));
@@ -284,7 +284,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     }
                     case 1:{
-                        Cursor findName = SQLDataBase.getSortName("背部訓練");
+                        Cursor findName = SQLDataBase.getSportName("背部訓練");
 
                         while (findName.moveToNext()){
                             tmp_name.add(findName.getString(0));
@@ -302,7 +302,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     }
                     case 2:{
-                        Cursor findName = SQLDataBase.getSortName("腿部訓練");
+                        Cursor findName = SQLDataBase.getSportName("腿部訓練");
 
                         while (findName.moveToNext()){
                             tmp_name.add(findName.getString(0));
@@ -320,7 +320,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     }
                     case 3:{
-                        Cursor findName = SQLDataBase.getSortName("手部訓練");
+                        Cursor findName = SQLDataBase.getSportName("手部訓練");
 
                         while (findName.moveToNext()){
                             tmp_name.add(findName.getString(0));
