@@ -471,13 +471,10 @@ public class MainActivity extends AppCompatActivity {
                         View mView = getLayoutInflater().inflate(R.layout.delete_day,null);
                         final Button deleteOK = (Button) mView.findViewById(R.id.deleteDayOK);
                         final EditText deleteDate = (EditText) mView.findViewById(R.id.deleteDay);
-
-                        mBuilder.setView(mView);
                         final AlertDialog deleteSQL = mBuilder.create();
+
                         deleteSQL.show();
-
-
-
+                        mBuilder.setView(mView);
 
 
                         deleteOK.setOnClickListener(new Button.OnClickListener() {
@@ -607,7 +604,7 @@ public class MainActivity extends AppCompatActivity {
                 String bmi_status="";
 
                 //基礎代謝率
-                bmr = (10*get_weight)+(6.25*get_tall)-(5*get_age)+get_gender;
+                bmr = TAB3_CalculateBMR(get_weight, get_tall, get_age, get_gender);
 
                 //TDEE
                 tdee = bmr*get_activity;
@@ -658,7 +655,13 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private double TAB3_CalculateBMR(double get_weight,double get_tall,int get_age, int get_gender){
 
+        bmr = (10*get_weight)+(6.25*get_tall)-(5*get_age)+get_gender;
+
+        return bmr;
+    }
+    
     private DataPoint[] getDataPoint() {
         String tmp[]= query_date_text.split("/");
         if(Integer.parseInt(tmp[1]) <10)
