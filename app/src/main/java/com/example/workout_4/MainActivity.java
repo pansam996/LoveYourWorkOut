@@ -607,7 +607,7 @@ public class MainActivity extends AppCompatActivity {
                 bmr = TAB3_CalculateBMR(get_weight, get_tall, get_age, get_gender);
 
                 //TDEE
-                tdee = bmr*get_activity;
+                tdee = TAB3_CalculateTDEE(bmr ,get_activity);
 
                 //BMI
                 bmi = get_weight/(get_tall/100)/(get_tall/100);
@@ -655,13 +655,19 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private double TAB3_CalculateTDEE(double bmr, double get_activity) {
+        return bmr*get_activity;
+    }
+
     private double TAB3_CalculateBMR(double get_weight,double get_tall,int get_age, int get_gender){
 
         bmr = (10*get_weight)+(6.25*get_tall)-(5*get_age)+get_gender;
 
         return bmr;
     }
-    
+
+
+
     private DataPoint[] getDataPoint() {
         String tmp[]= query_date_text.split("/");
         if(Integer.parseInt(tmp[1]) <10)
