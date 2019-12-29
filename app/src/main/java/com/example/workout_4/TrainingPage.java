@@ -30,7 +30,6 @@ public class TrainingPage extends AppCompatActivity {
     boolean breaking = false;
     boolean record = false;
     boolean record_ornot = false;
-    ListView menu = null;
     int chose_position = 0;
     int btn_count = 0;
     int set_count = 0;
@@ -39,11 +38,11 @@ public class TrainingPage extends AppCompatActivity {
     long elapsedMillis;
     int sp_total_work=0;
     String chose_part ="";
-
+    ListView menu = null;
     String all_activity = ""; //記錄今日所有活動
     SQL_DataBase SQLDataBase;
-
     ArrayList<ActionInfo> allArea_list = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -155,9 +154,9 @@ public class TrainingPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Bundle bundle = TrainingPage.this.getIntent().getExtras();
-                int chose = bundle.getInt("chose");
+                int choose = bundle.getInt("choose");
 
-                switch (chose){
+                switch (choose){
                     case 1:
                         chose_part="胸部訓練";
                         break;
@@ -175,7 +174,7 @@ public class TrainingPage extends AppCompatActivity {
 
                 Bundle bundle1 = new Bundle();
                 Intent intent = new Intent();
-                bundle1.putInt("chosed",chose);
+                bundle1.putInt("choosed",choose);
                 intent.putExtras(bundle1);
                 intent.setClass(TrainingPage.this  , AddAction.class);
                 startActivityForResult(intent,1);
@@ -526,4 +525,6 @@ public class TrainingPage extends AppCompatActivity {
             }
         }
     }
+
+
 }

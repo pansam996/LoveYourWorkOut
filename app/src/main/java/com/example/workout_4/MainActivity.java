@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent();
                 intent.setClass(MainActivity.this  , TrainingPage.class);
                 Bundle bundle = new Bundle();
-                bundle.putInt("chose",1);
+                bundle.putInt("choose",1);
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent();
                 intent.setClass(MainActivity.this  , TrainingPage.class);
                 Bundle bundle = new Bundle();
-                bundle.putInt("chose",2);
+                bundle.putInt("choose",2);
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent();
                 intent.setClass(MainActivity.this  , TrainingPage.class);
                 Bundle bundle = new Bundle();
-                bundle.putInt("chose",3);
+                bundle.putInt("choose",3);
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
@@ -159,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent();
                 intent.setClass(MainActivity.this  , TrainingPage.class);
                 Bundle bundle = new Bundle();
-                bundle.putInt("chose",4);
+                bundle.putInt("choose",4);
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
@@ -248,13 +248,12 @@ public class MainActivity extends AppCompatActivity {
 
 
         final List tmp_name = new ArrayList();
-        Spinner spinner = (Spinner)findViewById(R.id.spin_sp);
         final String[] sp = {"胸部肌群", "背部肌群", "腿部肌群", "手部肌群"};
+        Spinner spinner = (Spinner)findViewById(R.id.spin_sp);
         ArrayAdapter<String> spList = new ArrayAdapter<>(MainActivity.this, R.layout.myspinner, sp);
-        spList.setDropDownViewResource(R.layout.myspinner);
 
         spinner.setAdapter(spList);
-
+        spList.setDropDownViewResource(R.layout.myspinner);
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -671,8 +670,6 @@ public class MainActivity extends AppCompatActivity {
 
         return bmr;
     }
-
-
 
     private DataPoint[] getDataPoint() {
         String tmp[]= query_date_text.split("/");

@@ -29,11 +29,13 @@ public class AddAction extends AppCompatActivity {
 
         //選到哪個部位?
         Bundle bundle = AddAction.this.getIntent().getExtras();
-        int chosed = bundle.getInt("chosed");
+        int choosed = bundle.getInt("choosed");
 
         //新增動作區
         final List<ActionInfo> actionInfoArrayList = new ArrayList<>();
-        switch (chosed){
+
+
+        switch (choosed){
             case 1:{
                 actionInfoArrayList.add(new ActionInfo(false,"槓鈴系列",0,"","",0));
                 actionInfoArrayList.add(new ActionInfo(false,"槓鈴握推",R.drawable.chest_1,"","",0));
@@ -161,6 +163,7 @@ public class AddAction extends AppCompatActivity {
             }
 
         }
+
 
         final ChoseActionListAdapter adapter = new ChoseActionListAdapter(this,actionInfoArrayList);
         listView.setAdapter(adapter);
