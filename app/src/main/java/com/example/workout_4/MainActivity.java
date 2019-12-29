@@ -36,8 +36,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     BarGraphSeries<DataPoint> series;
-    SQL_DataBase SQLDataBase;
-    SQLiteDatabase sqLiteDatabase;
+    SQL_DataBase sql_dataBase;
 
     String choseTOOL = "";
     String choseDate ="";
@@ -172,12 +171,11 @@ public class MainActivity extends AppCompatActivity {
         TAB2_SettingGraph(graph);
 
         //資料庫設定
-        SQLDataBase = new SQL_DataBase(this);
-        sqLiteDatabase = SQLDataBase.getWritableDatabase();
-        series = new BarGraphSeries<DataPoint>(new DataPoint[0]);
+        sql_dataBase = TAB2_SettingDataBase();
 
+        
         //查詢並且畫圖
-
+        series = new BarGraphSeries<DataPoint>(new DataPoint[0]);
         btn_query.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -219,7 +217,7 @@ public class MainActivity extends AppCompatActivity {
                     sqltmpdate = choseDate+xV+"日";
 
                 String record = "";
-                Cursor findRecord = SQLDataBase.getSportRecord(sqltmpdate,choseTOOL);
+                Cursor findRecord = sql_dataBase.getSportRecord(sqltmpdate,choseTOOL);
                 while (findRecord.moveToNext()){
                     record += findRecord.getString(0)+"\n\n總公斤為 : "+findRecord.getString(1)+"KG\n\n";
                 }
@@ -265,7 +263,7 @@ public class MainActivity extends AppCompatActivity {
 
                 switch (position){
                     case 0:{
-                        Cursor findName = SQLDataBase.getSportName("胸部訓練");
+                        Cursor findName = sql_dataBase.getSportName("胸部訓練");
 
                         while (findName.moveToNext()){
                             tmp_name.add(findName.getString(0));
@@ -284,7 +282,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     }
                     case 1:{
-                        Cursor findName = SQLDataBase.getSportName("背部訓練");
+                        Cursor findName = sql_dataBase.getSportName("背部訓練");
 
                         while (findName.moveToNext()){
                             tmp_name.add(findName.getString(0));
@@ -302,7 +300,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     }
                     case 2:{
-                        Cursor findName = SQLDataBase.getSportName("腿部訓練");
+                        Cursor findName = sql_dataBase.getSportName("腿部訓練");
 
                         while (findName.moveToNext()){
                             tmp_name.add(findName.getString(0));
@@ -320,7 +318,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     }
                     case 3:{
-                        Cursor findName = SQLDataBase.getSportName("手部訓練");
+                        Cursor findName = sql_dataBase.getSportName("手部訓練");
 
                         while (findName.moveToNext()){
                             tmp_name.add(findName.getString(0));
@@ -377,7 +375,7 @@ public class MainActivity extends AppCompatActivity {
                 final Button dialog_delete = (Button) mView.findViewById(R.id.dialog_SQLdelete);
                 final ListView dialog_list = (ListView) mView.findViewById(R.id.dialog_SQLlist);
 
-                Cursor res1 = SQLDataBase.getTraingDate();
+                Cursor res1 = sql_dataBase.getTraingDate();
                 final List tmp_date = new ArrayList();
 
                 while (res1.moveToNext()){
@@ -409,7 +407,7 @@ public class MainActivity extends AppCompatActivity {
 
                         theDay.setText(date[position]);
 
-                        Cursor res = SQLDataBase.getDateRecord(date[position]);
+                        Cursor res = sql_dataBase.getDateRecord(date[position]);
 
                         StringBuffer buffer = new StringBuffer();
                         while (res.moveToNext()){
@@ -439,7 +437,7 @@ public class MainActivity extends AppCompatActivity {
                                 deleteOK.setOnClickListener(new Button.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
-                                        Integer deleteRows = SQLDataBase.deleteData(deleteID.getText().toString());
+                                        Integer deleteRows = sql_dataBase.deleteData(deleteID.getText().toString());
                                         if(deleteRows > 0)
                                             Toast.makeText(MainActivity.this,"資料刪除成功",Toast.LENGTH_SHORT).show();
                                         else
@@ -493,7 +491,7 @@ public class MainActivity extends AppCompatActivity {
                                     thedate = tmpdate[0]+"年"+tmpdate[1]+"月"+tmpdate[2]+"日";
                                 }
 
-                                Integer deleteRows = SQLDataBase.deleteSomeData(thedate);
+                                Integer deleteRows = sql_dataBase.deleteSomeData(thedate);
                                 if(deleteRows > 0)
                                     Toast.makeText(MainActivity.this,"資料刪除成功",Toast.LENGTH_SHORT).show();
                                 else
@@ -543,6 +541,10 @@ public class MainActivity extends AppCompatActivity {
         //縮放
         graph.getViewport().setScalable(true);
         graph.getViewport().setScrollable(true);
+    }
+
+    private SQL_DataBase TAB2_SettingDataBase(){
+        return new SQL_DataBase(this);
     }
 
     private void TAB3_Setting(final EditText tall, final EditText weight, final EditText age, Spinner gender, Spinner often, Button bth_porfile) {
@@ -677,7 +679,7 @@ public class MainActivity extends AppCompatActivity {
         if(Integer.parseInt(tmp[1]) <10)
             tmp[1] = "0"+tmp[1];
         choseDate = tmp[0]+"年"+tmp[1]+"月";
-        Cursor cursor = SQLDataBase.getDatePoint(choseDate,choseTOOL);
+        Cursor cursor = sql_dataBase.getDatePoint(choseDate,choseTOOL);
         DataPoint[] dp = new DataPoint[cursor.getCount()];
 
         for(int i=0;i<cursor.getCount();i++){
