@@ -38,5 +38,18 @@
     <string name="normal">(正常)</string>
     <string name="heavy">(過重)</string>
 
+    <!-- AddAction  Chest-->
+    <string name="BarbellBenchPress">槓鈴握推</string>
+    <string name="UpBarbellBenchPress">上斜槓鈴握推</string>
+    <string name="DownBarbellBenchPress">下斜槓鈴握推</string>
+    <string name="DumbbellBenchPress">啞鈴握推</string>
+    <string name="UpDumbbellBenchPress">上斜啞鈴飛鳥</string>
+    <string name="DownDumbbellBenchPress">下斜啞鈴握推</string>
+    <string name="BirdDownDumbbellBenchPress">下斜啞鈴飛鳥</string>
+    <string name="WaterSmoothWheelCoreAntiRotation">水平滑輪核心抗旋轉</string>
+    <string name="BenchPressOnInclinedPulley">上斜滑輪臥推</string>
+    <string name="SupinePulleyBird">仰臥滑輪飛鳥</string>
+
+
 
 </resources>

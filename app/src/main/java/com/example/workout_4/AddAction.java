@@ -38,20 +38,20 @@ public class AddAction extends AppCompatActivity {
         switch (choosed){
             case 1:{
                 actionInfoArrayList.add(new ActionInfo(false,"槓鈴系列",0,"","",0));
-                actionInfoArrayList.add(new ActionInfo(false,"槓鈴握推",R.drawable.chest_1,"","",0));
-                actionInfoArrayList.add(new ActionInfo(false,"上斜槓鈴握推",R.drawable.chest_2,"","",0));
-                actionInfoArrayList.add(new ActionInfo(false,"下斜槓鈴握推",R.drawable.chest_3,"","",0));
+                actionInfoArrayList.add(new ActionInfo(false,getString(R.string.BarbellBenchPress),R.drawable.chest_1,"","",0));
+                actionInfoArrayList.add(new ActionInfo(false,getString(R.string.UpBarbellBenchPress),R.drawable.chest_2,"","",0));
+                actionInfoArrayList.add(new ActionInfo(false,getString(R.string.DownBarbellBenchPress),R.drawable.chest_3,"","",0));
 
                 actionInfoArrayList.add(new ActionInfo(false,"啞鈴系列",0,"","",0));
-                actionInfoArrayList.add(new ActionInfo(false,"啞鈴握推",R.drawable.chest_4,"","",0));
-                actionInfoArrayList.add(new ActionInfo(false,"上斜啞鈴飛鳥",R.drawable.chest_5,"","",0));
-                actionInfoArrayList.add(new ActionInfo(false,"下斜啞鈴握推",R.drawable.chest_6,"","",0));
-                actionInfoArrayList.add(new ActionInfo(false,"下斜啞鈴飛鳥",R.drawable.chest_7,"","",0));
+                actionInfoArrayList.add(new ActionInfo(false,getString(R.string.DumbbellBenchPress),R.drawable.chest_4,"","",0));
+                actionInfoArrayList.add(new ActionInfo(false,getString(R.string.UpDumbbellBenchPress),R.drawable.chest_5,"","",0));
+                actionInfoArrayList.add(new ActionInfo(false,getString(R.string.DownDumbbellBenchPress),R.drawable.chest_6,"","",0));
+                actionInfoArrayList.add(new ActionInfo(false,getString(R.string.BirdDownDumbbellBenchPress),R.drawable.chest_7,"","",0));
 
                 actionInfoArrayList.add(new ActionInfo(false,"滑輪系列",0,"","",0));
-                actionInfoArrayList.add(new ActionInfo(false,"水平滑輪核心抗旋轉",R.drawable.chest_8,"","",0));
-                actionInfoArrayList.add(new ActionInfo(false,"上斜滑輪臥推",R.drawable.chest_9,"","",0));
-                actionInfoArrayList.add(new ActionInfo(false,"仰臥滑輪飛鳥",R.drawable.chest_10,"","",0));
+                actionInfoArrayList.add(new ActionInfo(false,getString(R.string.WaterSmoothWheelCoreAntiRotation),R.drawable.chest_8,"","",0));
+                actionInfoArrayList.add(new ActionInfo(false,getString(R.string.BenchPressOnInclinedPulley),R.drawable.chest_9,"","",0));
+                actionInfoArrayList.add(new ActionInfo(false,getString(R.string.SupinePulleyBird),R.drawable.chest_10,"","",0));
 
                 actionInfoArrayList.add(new ActionInfo(false,"機械式",0,"","",0));
                 actionInfoArrayList.add(new ActionInfo(false,"機械式平胸推舉",R.drawable.chest_11,"","",0));
