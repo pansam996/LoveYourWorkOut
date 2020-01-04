@@ -26,5 +26,17 @@
     <string name="dataDeleteSuccess">資料刪除成功</string>
     <string name="dataDeleteFail">資料刪除失敗</string>
 
+    <!-- MainActivity Tab3  -->
+    <string name="male">男</string>
+    <string name="female">女</string>
+    <string name="noSport">無運動習慣</string>
+    <string name="oneToThreeAWeek">一周一至三天</string>
+    <string name="threeToFiveAWeek">一周三至五天</string>
+    <string name="sixToSevenAWeek">一周六至七天</string>
+    <string name="twiceADay">一天訓練兩次</string>
+    <string name="thin">(過輕)</string>
+    <string name="normal">(正常)</string>
+    <string name="heavy">(過重)</string>
+
 
 </resources>

@@ -547,7 +547,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void TAB3_Setting(final EditText tall, final EditText weight, final EditText age, Spinner gender, Spinner often, Button bth_porfile) {
-        final String[] steGender = {"男","女"};
+        final String[] steGender = {getString(R.string.male),getString(R.string.female)};
         ArrayAdapter<String> genderList = new ArrayAdapter<>(MainActivity.this, R.layout.myspinner, steGender);
         genderList.setDropDownViewResource(R.layout.myspinner);
 
@@ -568,7 +568,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        final String[] strOften = {"無運動習慣","一周一至三天","一周三至五天","一周六至七天","一天訓練兩次"};
+        final String[] strOften = {getString(R.string.noSport),getString(R.string.oneToThreeAWeek),
+                getString(R.string.threeToFiveAWeek),getString(R.string.sixToSevenAWeek),getString(R.string.twiceADay)};
         ArrayAdapter<String> oftenList = new ArrayAdapter<>(MainActivity.this, R.layout.myspinner, strOften);
         oftenList.setDropDownViewResource(R.layout.myspinner);
 
@@ -614,11 +615,11 @@ public class MainActivity extends AppCompatActivity {
                 bmi = TAB3_CalculateBMI(get_weight ,get_tall );
 
                 if(bmi < 18.5)
-                    bmi_status = "(過輕)";
+                    bmi_status = getString(R.string.thin);
                 else if(bmi<24)
-                    bmi_status = "(正常)";
+                    bmi_status = getString(R.string.normal);
                 else
-                    bmi_status = "(過重)";
+                    bmi_status = getString(R.string.heavy);
                 AlertDialog.Builder profileBuilder = new AlertDialog.Builder(MainActivity.this);
                 View profileView = getLayoutInflater().inflate(R.layout.profile_dialog,null);
                 final TextView show_bmi = (TextView)profileView.findViewById(R.id.bmi);
