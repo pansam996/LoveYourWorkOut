@@ -101,17 +101,17 @@ public class MainActivity extends AppCompatActivity {
 
         TS = tabhost.newTabSpec("");
         TS.setContent(R.id.tab1);
-        TS.setIndicator("Training");
+        TS.setIndicator(getString(R.string.tab1_name));
         tabhost.addTab(TS);
 
         TS = tabhost.newTabSpec("");
         TS.setContent(R.id.tab2);
-        TS.setIndicator("Record");
+        TS.setIndicator(getString(R.string.tab2_name));
         tabhost.addTab(TS);
 
         TS = tabhost.newTabSpec("");
         TS.setContent(R.id.tab3);
-        TS.setIndicator("Profile");
+        TS.setIndicator(getString(R.string.tab3_name));
         tabhost.addTab(TS);
 
     }
@@ -185,7 +185,7 @@ public class MainActivity extends AppCompatActivity {
 
                     graph.addSeries(series);
 
-                    //Grapg點設定
+                    //Graph點設定
                     //series.setThickness(8);
                     //series.setDrawBackground(true);
                     //series.setDrawDataPoints(true);
@@ -219,7 +219,7 @@ public class MainActivity extends AppCompatActivity {
                 String record = "";
                 Cursor findRecord = sql_dataBase.getSportRecord(sqltmpdate,choseTOOL);
                 while (findRecord.moveToNext()){
-                    record += findRecord.getString(0)+"\n\n總公斤為 : "+findRecord.getString(1)+"KG\n\n";
+                    record += findRecord.getString(0)+"\n\n"+ getString(R.string.totalKG) +findRecord.getString(1)+"KG\n\n";
                 }
 
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
@@ -248,7 +248,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         final List tmp_name = new ArrayList();
-        final String[] sp = {"胸部肌群", "背部肌群", "腿部肌群", "手部肌群"};
+        final String[] sp = {getString(R.string.chest), getString(R.string.back), getString(R.string.leg), getString(R.string.hand)};
         Spinner spinner = (Spinner)findViewById(R.id.spin_sp);
         ArrayAdapter<String> spList = new ArrayAdapter<>(MainActivity.this, R.layout.myspinner, sp);
 
@@ -262,7 +262,7 @@ public class MainActivity extends AppCompatActivity {
 
                 switch (position){
                     case 0:{
-                        Cursor findName = sql_dataBase.getSportName("胸部訓練");
+                        Cursor findName = sql_dataBase.getSportName(getString(R.string.chestTraining));
 
                         while (findName.moveToNext()){
                             tmp_name.add(findName.getString(0));
@@ -281,7 +281,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     }
                     case 1:{
-                        Cursor findName = sql_dataBase.getSportName("背部訓練");
+                        Cursor findName = sql_dataBase.getSportName(getString(R.string.backTraining));
 
                         while (findName.moveToNext()){
                             tmp_name.add(findName.getString(0));
@@ -299,7 +299,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     }
                     case 2:{
-                        Cursor findName = sql_dataBase.getSportName("腿部訓練");
+                        Cursor findName = sql_dataBase.getSportName(getString(R.string.legTraining));
 
                         while (findName.moveToNext()){
                             tmp_name.add(findName.getString(0));
@@ -317,7 +317,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     }
                     case 3:{
-                        Cursor findName = sql_dataBase.getSportName("手部訓練");
+                        Cursor findName = sql_dataBase.getSportName(getString(R.string.handTraining));
 
                         while (findName.moveToNext()){
                             tmp_name.add(findName.getString(0));
@@ -438,9 +438,9 @@ public class MainActivity extends AppCompatActivity {
                                     public void onClick(View v) {
                                         Integer deleteRows = sql_dataBase.deleteData(deleteID.getText().toString());
                                         if(deleteRows > 0)
-                                            Toast.makeText(MainActivity.this,"資料刪除成功",Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(MainActivity.this,getString(R.string.dataDeleteSuccess),Toast.LENGTH_SHORT).show();
                                         else
-                                            Toast.makeText(MainActivity.this,"資料刪除失敗",Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(MainActivity.this,getString(R.string.dataDeleteFail),Toast.LENGTH_SHORT).show();
                                         deleteSQL.cancel();
                                         theDay_dialog.cancel();
                                     }
@@ -492,9 +492,9 @@ public class MainActivity extends AppCompatActivity {
 
                                 Integer deleteRows = sql_dataBase.deleteSomeData(thedate);
                                 if(deleteRows > 0)
-                                    Toast.makeText(MainActivity.this,"資料刪除成功",Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(MainActivity.this,getString(R.string.dataDeleteSuccess),Toast.LENGTH_SHORT).show();
                                 else
-                                    Toast.makeText(MainActivity.this,"資料刪除失敗",Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(MainActivity.this,getString(R.string.dataDeleteFail),Toast.LENGTH_SHORT).show();
                                 deleteSQL.cancel();
                                 SQL_dialog.cancel();
                             }

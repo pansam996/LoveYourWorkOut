@@ -1,8 +1,30 @@
 <resources>
-    <string name="app_name">WorkOut_4</string>
+    <string name="app_name">WorkOut</string>
     <string name="title_activity_chest_menu">chest_menu</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_activity_main2">Main2Activity</string>
+
+    <!-- MainActivity TAB Name -->
+
+    <string name="tab1_name">訓練項目</string>
+    <string name="tab2_name">訓練日誌</string>
+    <string name="tab3_name">身體素質檢視</string>
+
+    <!-- MainActivity Tab2  -->
+    <string name="totalKG">總公斤為 ： </string>
+    <string name="KG">身體素質檢視</string>
+    <string name="chest">胸部肌群</string>
+    <string name="back">背部肌群</string>
+    <string name="leg">腿部肌群</string>
+    <string name="hand">手部肌群</string>
+    <string name="chestTraining">胸部訓練</string>
+    <string name="backTraining">背部訓練</string>
+    <string name="legTraining">腿部訓練</string>
+    <string name="handTraining">手部訓練</string>
+    <string name="dataDeleteSuccess">資料刪除成功</string>
+    <string name="dataDeleteFail">資料刪除失敗</string>
+
+
 </resources>
